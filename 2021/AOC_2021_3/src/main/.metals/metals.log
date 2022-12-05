@@ -1,8 +1,0 @@
-[0m2021.12.06 14:01:11 INFO  Started: Metals version 0.10.9 in workspace '/Users/dkLuKaMa/adventOfCode/aoc_3/src/main' for client Visual Studio Code 1.62.3.[0m
-[0m2021.12.06 14:01:12 INFO  time: initialize in 0.79s[0m
-[0m2021.12.06 14:01:12 WARN  Build server is not auto-connectable.[0m
-[0m2021.12.06 14:01:12 WARN  no build tool detected in workspace '/Users/dkLuKaMa/adventOfCode/aoc_3/src/main'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
-[0m2021.12.06 14:01:12 WARN  no build target for: /Users/dkLuKaMa/adventOfCode/aoc_3/src/main/scala/Main.scala[0m
-[0m2021.12.06 14:01:14 INFO  no build target: using presentation compiler with only scala-library: 3.1.0[0m
-[0m2021.12.06 14:01:15 INFO  time: code lens generation in 2.84s[0m
-[0m2021.12.06 14:01:20 INFO  shutting down Metals[0m
