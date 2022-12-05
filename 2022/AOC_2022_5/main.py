@@ -20,17 +20,20 @@ def main():
     ship = []
     instructions = []
 
+    # find the index (roughly) which divides the ship's layout from instructions
     split = 0
     for line in data:
         if line[1] == "1":
             break
         split += 1
 
-    nb_of_cols = int((data[split].split())[-1])  # nb of containers stacks in the ship
+    # nb of containers stacks in the ship (taken from the line with labels)
+    nb_of_cols = int((data[split].split())[-1])
 
     ship = data[:split]  # extract ship layout from data
     ship_matrix = []
-    for line in ship:  # extract containers IDs from the ship data
+    # extract containers IDs from the ship data
+    for line in ship:
         tmp = []
         for i in range(nb_of_cols):
             try:
@@ -59,13 +62,15 @@ def main():
 
         moving = []  # list of containers being moved
 
-        # Moving containers one by one:
+        ## Part one: moving containers one by one:
         # for i in range(nb):
         #     moving.append(ship_matrix[move_from].pop())
+        ## End of part one
 
-        # Moving containers by full stacks
+        ## Part two: moving containers by full stacks
         moving.extend(ship_matrix[move_from][-nb:])
         del ship_matrix[move_from][len(ship_matrix[move_from]) - nb :]
+        ## End of part two
 
         ship_matrix[move_to].extend(moving)
 
