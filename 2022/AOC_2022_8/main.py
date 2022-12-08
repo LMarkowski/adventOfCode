@@ -152,7 +152,6 @@ def find_max_scenic_score(trees):
 
 def main():
     debug = False
-
     data = read_file("test-data.txt") if debug else read_file("data.txt")
 
     trees = separate_integers(data)
