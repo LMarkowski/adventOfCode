@@ -7,7 +7,7 @@ def read_file(filename):
 
 
 def main():
-    debug = False
+    debug = 1  # 1 for testing | 0 for the final run
     data = read_file("test-data.txt") if debug else read_file("data.txt")
 
 
