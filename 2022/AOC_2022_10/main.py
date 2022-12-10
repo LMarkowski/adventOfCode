@@ -7,7 +7,12 @@ def read_file(filename):
 
 
 class Instruction:
-    def __init__(self, cycle, value):
+    # Could as well be a tuple, but this way seems to be more clear
+    # Attributes:
+    #   value: value to be added to the registry
+    #   cycle: cycle in which this instruction will be executed
+
+    def __init__(self, cycle: int, value: int):
         self.value = value
         self.cycle = cycle
 
@@ -17,16 +22,10 @@ class Instruction:
         return str
 
 
-def main():
-    debug = 0  # 1 for testing | 0 for the final run
-    data = read_file("test-data.txt") if debug else read_file("data.txt")
-    data_split = [line.split() for line in data]
-
+def make_instructions_queue(data):
     instructions_list = []
 
-    message = ""
-
-    for line in data_split:
+    for line in data:
         if instructions_list:
             first_free_cycle = max([instr.cycle for instr in instructions_list])
         else:
@@ -40,13 +39,31 @@ def main():
             case "noop":
                 instructions_list.append(Instruction(first_free_cycle + 1, 0))
 
+    return instructions_list
+
+
+def get_part_one_result(interesting_cycles, values_to_check):
+    result = 0
+    for cycle, register in zip(interesting_cycles, values_to_check):
+        result += cycle * register
+    return result
+
+
+def main():
+    debug = 0  # 1 for testing | 0 for the final run
+    data = read_file("test-data.txt") if debug else read_file("data.txt")
+    data_split = [line.split() for line in data]
+
+    instructions_queue = make_instructions_queue(data_split)
+
     if debug:
-        for instr in instructions_list:
+        for instr in instructions_queue:
             print(instr)
         print()
 
     register = 1
-    cycle = 1
+    cycle = 0
+    message = ""
 
     interesting_cycles = [20, 60, 100, 140, 180, 220]
     values_to_check = []
@@ -57,31 +74,25 @@ def main():
         if debug:
             print(f"Start cycle: {cycle}")
             print(f"Register:    {register}")
-            print()
-
-        instr = data_split.pop() if data_split else []
 
         if cycle in interesting_cycles:
             values_to_check.append(register)
 
-        if debug:
-            print(f"End cycle:   {cycle}")
-
         executed = []
-        for instruction in instructions_list:
+        for instruction in instructions_queue:
             if instruction.cycle == cycle:
                 register += instruction.value
                 executed.append(instruction)
 
         for item in executed:
-            instructions_list.remove(item)
+            instructions_queue.remove(item)
 
         ####  PRINTING  ####
 
-        if abs((cycle % 40) - register) <= 1:
-            message += "#"
+        if abs((cycle % 40) - (register)) <= 1:
+            message += "█"
         else:
-            message += "."
+            message += " "
 
         if cycle % 40 == 0:
             message += "\n"
@@ -89,19 +100,19 @@ def main():
         #### /PRINTING  ####
 
         if debug:
+            print(f"End cycle:   {cycle}")
             print(f"Register:    {register}")
             print()
 
-        if not instructions_list and not data_split:
+        if not instructions_queue:
             break
-
-    result = 0
-    for cycle, register in zip(interesting_cycles, values_to_check):
-        result += cycle * register
 
     if debug:
         print(interesting_cycles)
         print(values_to_check)
+        print()
+
+    result = get_part_one_result(interesting_cycles, values_to_check)
 
     print("Part one:")
     print(result)
