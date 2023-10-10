@@ -5,14 +5,6 @@
 
 using namespace std;
 
-enum Direction
-{
-    North,
-    East,
-    South,
-    West
-};
-
 int main()
 {
     vector<string> input;
