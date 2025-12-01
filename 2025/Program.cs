@@ -8,6 +8,7 @@ class Program
         {
             Console.WriteLine("Usage: dotnet run <day>");
             Console.WriteLine("Example: dotnet run 1");
+            Console.WriteLine("Add 'test' as second argument to run with test input.");
             return;
         }
 
@@ -18,6 +19,9 @@ class Program
         {
             case 1:
                 Day01.Solve(test);
+                break;
+            case 2:
+                Day02.Solve(test);
                 break;
             default:
                 Console.WriteLine($"Day {day} not implemented yet.");
