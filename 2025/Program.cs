@@ -23,6 +23,9 @@ class Program
             case 2:
                 Day02.Solve(test);
                 break;
+            case 3:
+                Day03.Solve(test);
+                break;
             default:
                 Console.WriteLine($"Day {day} not implemented yet.");
                 break;
