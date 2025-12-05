@@ -22,7 +22,7 @@ public static class Day04
         Console.WriteLine("Part 1:");
         int[][] matrix = ToIntMatrix(lines);
         int result = CountRemovable(matrix, 4);
-        Console.WriteLine($"Verified Result: {result}");
+        Console.WriteLine($"Result: {result}");
     }
 
     private static void SolvePart2(string[] lines)
